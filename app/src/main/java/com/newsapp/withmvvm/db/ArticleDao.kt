@@ -2,7 +2,7 @@ package com.newsapp.withmvvm.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.newsapp.withmvvm.Article
+import com.newsapp.withmvvm.models.Article
 
 @Dao
 interface ArticleDao {
@@ -16,5 +16,5 @@ interface ArticleDao {
 
     @Delete
     suspend fun deleteArticle(article: Article)
-
+    
 }

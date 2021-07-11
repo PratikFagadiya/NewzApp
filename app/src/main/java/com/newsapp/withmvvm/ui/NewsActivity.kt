@@ -3,6 +3,7 @@ package com.newsapp.withmvvm.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.newsapp.withmvvm.R
@@ -20,7 +21,6 @@ class NewsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_news)
 
         val repository = NewsRepository(ArticleDatabase.invoke(this))
-
         val viewModelProviderFactory = NewsViewModelProviderFactory(repository)
 
         newsViewModel =

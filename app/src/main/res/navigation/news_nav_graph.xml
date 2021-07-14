@@ -51,6 +51,10 @@
         android:id="@+id/articleFragment"
         android:name="com.newsapp.withmvvm.ui.fragments.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="article"
+            app:argType="com.newsapp.withmvvm.models.Article" />
+    </fragment>
 
 </navigation>

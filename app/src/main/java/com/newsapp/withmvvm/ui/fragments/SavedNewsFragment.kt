@@ -3,8 +3,12 @@ package com.newsapp.withmvvm.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.newsapp.withmvvm.R
 import com.newsapp.withmvvm.adapters.NewsAdapter
 import com.newsapp.withmvvm.ui.NewsActivity
@@ -32,6 +36,41 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 bundle
             )
         }
+
+        viewModel.getSavedNews().observe(viewLifecycleOwner, { articles ->
+            newsAdapter.differ.submitList(articles)
+        })
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val itemPosition = viewHolder.adapterPosition
+                val article = newsAdapter.differ.currentList[itemPosition]
+                viewModel.deleteArticle(article)
+
+                Snackbar.make(view, "Successfully Deleted Article", Snackbar.LENGTH_LONG).apply {
+                    setAction("Undo") {
+                        viewModel.saveArticle(article)
+                    }
+                    show()
+                }
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).apply {
+            attachToRecyclerView(rvSavedNews)
+        }
+
     }
 
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.newsapp.withmvvm.R
 import com.newsapp.withmvvm.ui.NewsActivity
 import com.newsapp.withmvvm.ui.NewsViewModel
@@ -28,6 +29,11 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view, "Article Saved Successfully", Snackbar.LENGTH_SHORT).show()
         }
 
     }

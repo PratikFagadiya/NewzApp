@@ -41,6 +41,7 @@
             android:background="@drawable/tomato_dark_background"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_search_24" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

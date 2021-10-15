@@ -1,23 +1,34 @@
 package com.newsapp.withmvvm.ui.fragments
 
-    import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
-import androidx.navigation.NavArgs
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.newsapp.withmvvm.R
+import com.newsapp.withmvvm.databinding.FragmentArticleBinding
 import com.newsapp.withmvvm.ui.NewsActivity
 import com.newsapp.withmvvm.ui.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_article.*
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     lateinit var viewModel: NewsViewModel
     val args: ArticleFragmentArgs by navArgs()
+
+    private var _binding: FragmentArticleBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentArticleBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,15 +37,20 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         val article = args.article
 
-        webView.apply {
+        binding.webView.apply {
             webViewClient = WebViewClient()
             article.url?.let { loadUrl(it) }
         }
 
-        fab.setOnClickListener {
+        binding.fab.setOnClickListener {
             viewModel.saveArticle(article)
             Snackbar.make(view, "Article Saved Successfully", Snackbar.LENGTH_SHORT).show()
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

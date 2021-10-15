@@ -1,9 +1,10 @@
 package com.newsapp.withmvvm.ui.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,15 +12,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.newsapp.withmvvm.R
 import com.newsapp.withmvvm.adapters.NewsAdapter
+import com.newsapp.withmvvm.databinding.FragmentSavedNewsBinding
 import com.newsapp.withmvvm.ui.NewsActivity
 import com.newsapp.withmvvm.ui.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_saved_news.*
-import kotlinx.android.synthetic.main.fragment_search_news.paginationProgressBar
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
+
+    private var _binding: FragmentSavedNewsBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSavedNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,26 +80,31 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         }
 
         ItemTouchHelper(itemTouchHelperCallback).apply {
-            attachToRecyclerView(rvSavedNews)
+            attachToRecyclerView(binding.rvSavedNews)
         }
 
     }
 
 
     private fun hideProgressBar() {
-        paginationProgressBar.visibility = View.INVISIBLE
+        binding.paginationProgressBar.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar() {
-        paginationProgressBar.visibility = View.VISIBLE
+        binding.paginationProgressBar.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
-        rvSavedNews.apply {
+        binding.rvSavedNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

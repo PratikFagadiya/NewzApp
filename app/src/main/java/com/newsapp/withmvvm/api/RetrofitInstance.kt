@@ -2,7 +2,6 @@ package com.newsapp.withmvvm.api
 
 import com.newsapp.withmvvm.util.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
-import okhttp3.internal.http.RetryAndFollowUpInterceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

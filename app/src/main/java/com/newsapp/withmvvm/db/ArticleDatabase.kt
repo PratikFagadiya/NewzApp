@@ -32,7 +32,7 @@ abstract class ArticleDatabase : RoomDatabase() {
                 context.applicationContext,
                 ArticleDatabase::class.java,
                 "NewZApp.db"
-            ).build()
+            ).allowMainThreadQueries().build()
     }
 
 }

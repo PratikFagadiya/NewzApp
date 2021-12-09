@@ -83,4 +83,7 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
+    fun checkArticleExist(url:String) =
+        newsRepository.checkArticleExist(url)
+
 }

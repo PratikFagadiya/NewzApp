@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/activity_news.xml" value="0.19537037037037036" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_article.xml" value="0.2609375" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_search_news.xml" value="0.22" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/item_article_preview.xml" value="0.19537037037037036" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2609375" />
         <entry key="..\:/Users/AGAM/AndroidStudioProjects/NewzApp/app/src/main/res/layout/fragment_search_news.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/AGAM/AndroidStudioProjects/NewzApp/app/src/main/res/layout/item_article_preview.xml" value="0.2957427536231884" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

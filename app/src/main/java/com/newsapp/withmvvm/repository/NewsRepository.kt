@@ -5,7 +5,7 @@ import com.newsapp.withmvvm.db.ArticleDatabase
 import com.newsapp.withmvvm.models.Article
 
 class NewsRepository(
-    val db: ArticleDatabase
+    private val db: ArticleDatabase
 ) {
 
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
@@ -21,5 +21,7 @@ class NewsRepository(
 
     suspend fun deleteArticle(article: Article) =
         db.getArticleDao().deleteArticle(article)
+
+    fun checkArticleExist(url: String) = db.getArticleDao().articledInSaved(url)
 
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
@@ -12,6 +13,7 @@ import com.newsapp.withmvvm.R
 import com.newsapp.withmvvm.databinding.FragmentArticleBinding
 import com.newsapp.withmvvm.ui.NewsActivity
 import com.newsapp.withmvvm.ui.NewsViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
@@ -30,6 +32,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         return binding.root
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -37,9 +40,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         val article = args.article
 
+        if (viewModel.checkArticleExist(article.url!!)) {
+            binding.fab.visibility = View.GONE
+        } else {
+            binding.fab.visibility = View.VISIBLE
+        }
+
         binding.webView.apply {
             webViewClient = WebViewClient()
-            article.url?.let { loadUrl(it) }
+            loadUrl(article.url)
         }
 
         binding.fab.setOnClickListener {

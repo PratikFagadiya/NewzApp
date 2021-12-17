@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/activity_news.xml" value="0.19537037037037036" />
-        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_article.xml" value="0.2609375" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/drawable/tab_color.xml" value="0.22592592592592592" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/drawable/tomato_dark_background.xml" value="0.22592592592592592" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/drawable/tomato_light_background.xml" value="0.20185185185185187" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/activity_news.xml" value="0.22" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_article.xml" value="0.18" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_breaking_news.xml" value="0.2" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_saved_news.xml" value="0.22" />
         <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/fragment_search_news.xml" value="0.22" />
-        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/item_article_preview.xml" value="0.19537037037037036" />
+        <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/layout/item_article_preview.xml" value="0.2" />
         <entry key="..\:/Pratik/Demos/NewzApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2609375" />
         <entry key="..\:/Users/AGAM/AndroidStudioProjects/NewzApp/app/src/main/res/layout/fragment_search_news.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/AGAM/AndroidStudioProjects/NewzApp/app/src/main/res/layout/item_article_preview.xml" value="0.2957427536231884" />

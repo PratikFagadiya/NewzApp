@@ -10,6 +10,7 @@
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="parent">

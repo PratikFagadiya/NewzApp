@@ -1,11 +1,13 @@
 package com.newsapp.withmvvm.adapters
 
 import android.view.LayoutInflater
+import android.view.RoundedCorner
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.newsapp.withmvvm.databinding.ItemArticlePreviewBinding
 import com.newsapp.withmvvm.models.Article
 
@@ -38,7 +40,12 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         val article = differ.currentList[position]
 
         with(holder) {
-            Glide.with(this.itemView).load(article.urlToImage).into(binding.ivArticleImage)
+//            Glide.with(this.itemView).load(article.urlToImage).into(binding.ivArticleImage)
+
+            binding.ivArticleImage.load(article.urlToImage) {
+                transformations(RoundedCornersTransformation(15f))
+            }
+
             binding.tvSource.text = article.source?.name
             binding.tvTitle.text = article.title
             binding.tvDescription.text = article.description

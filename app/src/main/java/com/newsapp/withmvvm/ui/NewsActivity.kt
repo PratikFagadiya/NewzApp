@@ -21,7 +21,6 @@ class NewsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         val repository = NewsRepository(ArticleDatabase.invoke(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(repository)
 

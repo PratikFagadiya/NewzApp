@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class NewsViewModel(
-    val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository
 ) : ViewModel() {
 
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
@@ -50,7 +50,7 @@ class NewsViewModel(
                     val newArticle = resultResponse.articles
                     oldArticle?.addAll(newArticle)
                 }
-                return Resource.Success(breakingNewsResponse ?: resultResponse )
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -67,7 +67,7 @@ class NewsViewModel(
                     val newArticle = resultResponse.articles
                     oldArticle?.addAll(newArticle)
                 }
-                return Resource.Success(searchNewsResponse ?: resultResponse )
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -83,7 +83,7 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
-    fun checkArticleExist(url:String) =
+    fun checkArticleExist(url: String) =
         newsRepository.checkArticleExist(url)
 
 }

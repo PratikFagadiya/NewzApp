@@ -12,6 +12,7 @@ import com.newsapp.withmvvm.repository.NewsRepository
 
 class NewsActivity : AppCompatActivity() {
 
+    /** NewsViewModel is public because it is being used by all the fragments through this activity */
     lateinit var newsViewModel: NewsViewModel
     private lateinit var binding: ActivityNewsBinding
 

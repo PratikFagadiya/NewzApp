@@ -7,7 +7,7 @@ import com.newsapp.withmvvm.models.Article
 @Dao
 interface ArticleDao {
 
-    //    FOR UPDATE AND INSERT
+    // FOR UPDATE AND INSERT
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(article: Article): Long
 

@@ -8,7 +8,8 @@ import retrofit2.http.Query
 
 interface NewsAPI {
 
-    @GET("v2/top-headlines")
+    /** Only include the path here, like "top-headlines", no need to pass the v2 **/
+    @GET("top-headlines")
     suspend fun getBreakingNews(
         @Query("country")
         countryCode: String = "us",
@@ -18,7 +19,8 @@ interface NewsAPI {
         apiKey: String = API_KEY
     ): Response<NewsResponse>
 
-    @GET("v2/everything")
+    /** Only include the path here, like "everything", no need to pass the v2 **/
+    @GET("everything")
     suspend fun searchForNews(
         @Query("q")
         searchQuery: String,

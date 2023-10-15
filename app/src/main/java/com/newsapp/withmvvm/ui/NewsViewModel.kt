@@ -7,6 +7,7 @@ import com.newsapp.withmvvm.models.Article
 import com.newsapp.withmvvm.models.NewsResponse
 import com.newsapp.withmvvm.repository.NewsRepository
 import com.newsapp.withmvvm.util.Resource
+import com.newsapp.withmvvm.util.Util
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -53,7 +54,7 @@ class NewsViewModel(
                 return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
-        return Resource.Error(response.message())
+        return Resource.Error(Util.convertErrorStatusCodeToString(response.code()))
     }
 
     private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
@@ -70,7 +71,7 @@ class NewsViewModel(
                 return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
-        return Resource.Error(response.message())
+        return Resource.Error(Util.convertErrorStatusCodeToString(response.code()))
     }
 
     fun saveArticle(article: Article) = viewModelScope.launch {

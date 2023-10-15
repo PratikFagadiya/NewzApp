@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.newsapp.withmvvm"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -29,6 +29,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -36,6 +37,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    namespace 'com.newsapp.withmvvm'
 }
 
 dependencies {

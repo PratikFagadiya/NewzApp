@@ -6,23 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ArticleFragment">
 
-    <WebView
-        android:id="@+id/webView"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/snackRoot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/tomato"
-        android:src="@drawable/ic_favorite"
-        app:fabSize="normal"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/tomato"
+            android:src="@drawable/ic_favorite"
+            app:fabSize="normal"
+            app:tint="@android:color/white"
+            tools:ignore="ContentDescription"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@string/save_article_button"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

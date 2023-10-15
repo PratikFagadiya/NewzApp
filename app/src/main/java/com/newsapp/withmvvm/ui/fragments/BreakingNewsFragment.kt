@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.newsapp.withmvvm.R
+import com.google.android.material.snackbar.Snackbar
 import com.newsapp.withmvvm.adapters.NewsAdapter
 import com.newsapp.withmvvm.databinding.FragmentBreakingNewsBinding
 import com.newsapp.withmvvm.ui.NewsActivity
@@ -19,10 +17,10 @@ import com.newsapp.withmvvm.ui.NewsViewModel
 import com.newsapp.withmvvm.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.newsapp.withmvvm.util.Resource
 
-class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
+class BreakingNewsFragment : Fragment() {
 
-    lateinit var viewModel: NewsViewModel
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
     private var _binding: FragmentBreakingNewsBinding? = null
     private val binding get() = _binding!!
@@ -33,6 +31,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -43,16 +42,16 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         setupRecyclerView()
 
         newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article", it)
-            }
-            findNavController().navigate(
-                R.id.action_breakingNewsFragment_to_articleFragment,
-                bundle
-            )
+
+            // Using SafeArgs to pass the arguments to Fragment
+            val directions = BreakingNewsFragmentDirections
+                .actionBreakingNewsFragmentToArticleFragment(it)
+
+            findNavController().navigate(directions)
+
         }
 
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.breakingNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
@@ -68,16 +67,18 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
                 is Resource.Error -> {
                     hideProgressBar()
-                    response.message?.let { errorMessage ->
-                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
-                    }
+                    Snackbar.make(
+                        view,
+                        response.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
 
                 is Resource.Loading -> {
                     showProgressBar()
                 }
             }
-        })
+        }
     }
 
     private fun hideProgressBar() {
@@ -94,7 +95,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)

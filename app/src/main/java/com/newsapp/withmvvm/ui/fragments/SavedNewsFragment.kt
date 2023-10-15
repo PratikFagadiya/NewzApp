@@ -18,8 +18,8 @@ import com.newsapp.withmvvm.ui.NewsViewModel
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
-    lateinit var viewModel: NewsViewModel
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
     private var _binding: FragmentSavedNewsBinding? = null
     private val binding get() = _binding!!
@@ -40,18 +40,15 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         setupRecyclerView()
 
         newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article", it)
-            }
-            findNavController().navigate(
-                R.id.action_savedNewsFragment_to_articleFragment,
-                bundle
-            )
+
+            val directions = SavedNewsFragmentDirections.actionSavedNewsFragmentToArticleFragment(it)
+            findNavController().navigate(directions)
+
         }
 
-        viewModel.getSavedNews().observe(viewLifecycleOwner, { articles ->
+        viewModel.getSavedNews().observe(viewLifecycleOwner) { articles ->
             newsAdapter.differ.submitList(articles)
-        })
+        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,

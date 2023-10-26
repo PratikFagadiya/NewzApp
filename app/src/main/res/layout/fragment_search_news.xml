@@ -38,15 +38,19 @@
         <EditText
             android:id="@+id/etSearch"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
+            android:maxLines="1"
             android:background="@drawable/edittext_background"
             android:fontFamily="@font/notosans_regular"
             android:hint="@string/search_anything"
             android:padding="12dp"
             android:textColor="#39363F"
             android:textColorHint="#39363F"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:autofillHints="text" />
 
         <ImageView
             android:id="@+id/imgSearch"

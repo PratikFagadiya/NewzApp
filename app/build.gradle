@@ -3,12 +3,14 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
 
     compileSdk 33
     namespace 'com.newsapp.withmvvm'
+
 
     defaultConfig {
         applicationId "com.newsapp.withmvvm"
@@ -39,6 +41,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    namespace 'com.newsapp.withmvvm'
 }
 
 dependencies {

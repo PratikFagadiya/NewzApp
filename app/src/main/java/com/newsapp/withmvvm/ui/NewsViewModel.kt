@@ -59,6 +59,7 @@ class NewsViewModel(
         }
 
         // handle ERROR and return STATUS CODE & ERROR MESSAGE as String
+
         return Resource.Error(Util.convertErrorStatusCodeToString(response.code()))
     }
 
@@ -76,6 +77,7 @@ class NewsViewModel(
                 return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
+
 
         // handle ERROR and return STATUS CODE & ERROR MESSAGE as String
         return Resource.Error(Util.convertErrorStatusCodeToString(response.code()))

@@ -8,15 +8,13 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-
-import com.newsapp.withmvvm.R
 import com.newsapp.withmvvm.databinding.FragmentArticleBinding
 import com.newsapp.withmvvm.ui.NewsActivity
 import com.newsapp.withmvvm.ui.NewsViewModel
 
-class ArticleFragment : Fragment(R.layout.fragment_article) {
+class ArticleFragment : Fragment() {
 
-    lateinit var viewModel: NewsViewModel
+    private lateinit var viewModel: NewsViewModel
     private val args: ArticleFragmentArgs by navArgs()
 
     private var _binding: FragmentArticleBinding? = null
@@ -51,7 +49,16 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         binding.fab.setOnClickListener {
             viewModel.saveArticle(article)
-            Snackbar.make(view, "Article Saved Successfully", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(
+                /**
+                 * This line ensures we aren't overlapping fab or bottom nav view
+                 * And it pushes the fab up as the SnackBar appears and pushes down when SnackBar hides
+                 */
+                binding.snackRoot,
+                "Article Saved Successfully",
+                Snackbar.LENGTH_SHORT
+            ).show()
+
         }
 
     }

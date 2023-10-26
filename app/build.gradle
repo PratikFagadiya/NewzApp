@@ -9,6 +9,8 @@ plugins {
 android {
 
     compileSdk 33
+    namespace 'com.newsapp.withmvvm'
+
 
     defaultConfig {
         applicationId "com.newsapp.withmvvm"
@@ -35,6 +37,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }

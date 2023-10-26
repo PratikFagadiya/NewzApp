@@ -1,7 +1,6 @@
 package com.newsapp.withmvvm.adapters
 
 import android.view.LayoutInflater
-import android.view.RoundedCorner
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -37,23 +36,23 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val article = differ.currentList[position]
+
+        val currentArticle = differ.currentList[position]
 
         with(holder) {
-//            Glide.with(this.itemView).load(article.urlToImage).into(binding.ivArticleImage)
 
-            binding.ivArticleImage.load(article.urlToImage) {
+            binding.ivArticleImage.load(currentArticle.urlToImage) {
                 transformations(RoundedCornersTransformation(15f))
             }
 
-            binding.tvSource.text = article.source?.name
-            binding.tvTitle.text = article.title
-            binding.tvDescription.text = article.description
-            binding.tvPublishedAt.text = article.publishedAt
+            binding.tvSource.text = currentArticle.source?.name
+            binding.tvTitle.text = currentArticle.title
+            binding.tvDescription.text = currentArticle.description
+            binding.tvPublishedAt.text = currentArticle.publishedAt
 
             this.itemView.setOnClickListener {
                 onItemClickListener?.let {
-                    it(article)
+                    it(currentArticle)
                 }
             }
         }

@@ -7,11 +7,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.newsapp.withmvvm.models.Article
 
-@Database(
-    entities = [Article::class],
-    version = 1,
-
-    )
+/**
+ * All the parameters like entities, version and exportSchema needs to declared explicitly to avoid ambiguity
+ */
+@Database(entities = [Article::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
 
